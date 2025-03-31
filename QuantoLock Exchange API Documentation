@@ -1,0 +1,106 @@
+# QuantoLock Exchange API Documentation
+
+## Overview
+QuantoLock Exchange offers a robust and secure REST API designed to provide developers and partners access to trading functionality, market data, and user account management.
+
+## Base URL
+`https://api.quantolock.com/v1/`
+
+## Authentication
+All requests to the QuantoLock API require API key authentication.
+
+**Example:**
+```
+GET /balance
+Headers:
+  API-Key: your-api-key
+```
+
+## API Endpoints
+
+### 1. Market Data
+
+#### Get Market Prices
+```
+GET /market/prices
+```
+
+#### Get Order Book
+```
+GET /market/orderbook?pair=QTL_USDT
+```
+
+#### Get Recent Trades
+```
+GET /market/trades?pair=QTL_USDT
+```
+
+### 2. Account
+
+#### Check Account Balance
+```
+GET /account/balance
+Headers:
+  API-Key: your-api-key
+```
+
+#### Transaction History
+```
+GET /account/transactions
+Headers:
+  API-Key: your-api-key
+```
+
+### 3. Orders
+
+#### Create New Order
+```
+POST /order
+Headers:
+  API-Key: your-api-key
+Body:
+{
+  "pair": "QTL_USDT",
+  "type": "buy",
+  "amount": "1000",
+  "price": "0.0148"
+}
+```
+
+#### Cancel Order
+```
+DELETE /order/{order_id}
+Headers:
+  API-Key: your-api-key
+```
+
+#### Get Order Status
+```
+GET /order/{order_id}
+Headers:
+  API-Key: your-api-key
+```
+
+## Response Format
+All API responses are returned in JSON format.
+
+**Example Response:**
+```
+{
+  "status": "success",
+  "data": {}
+}
+```
+
+## Errors
+Standard HTTP status codes are used for error responses.
+
+| Code | Meaning               | Description                           |
+|------|-----------------------|---------------------------------------|
+| 400  | Bad Request           | The request was invalid or malformed. |
+| 401  | Unauthorized          | API key missing or incorrect.         |
+| 403  | Forbidden             | You do not have access.               |
+| 404  | Not Found             | The requested resource was not found. |
+| 500  | Internal Server Error | An error occurred on the server.      |
+
+For additional support, please contact us at [support@quantolock.com](mailto:support@quantolock.com).
